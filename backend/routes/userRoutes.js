@@ -74,7 +74,7 @@ userRouter.delete(
     }
   })
 );
-
+//USER SIGN-IN
 userRouter.post(
   '/signin',
   expressAsyncHandler(async (req, res) => {
@@ -96,7 +96,7 @@ userRouter.post(
     res.status(401).send({ message: 'Invalid Email/Password' });
   })
 );
-
+//USER SIGN-UP
 userRouter.post(
   '/signup',
   expressAsyncHandler(async (req, res) => {

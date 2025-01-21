@@ -4,12 +4,8 @@ import dotenv from 'dotenv';
 import { Server } from 'socket.io';
 import http from 'http';
 import cors from 'cors';
-import path from 'path';
 
-import seedRouter from './routes/seedRoutes.js';
-import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
-import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
 import auctionRouter from './routes/auctionRoutes.js';
 import Auction from './models/auctionModel.js';
@@ -26,11 +22,10 @@ app.use(cors({
 }));
 
 // implementing api for paypal
-app.get('/api/keys/paypal', (req, res) => {
-  res.send(process.env.PAYPAL_CLIENT_ID || 'sandbox');
-});
+// app.get('/api/keys/paypal', (req, res) => {
+//   res.send(process.env.PAYPAL_CLIENT_ID || 'sandbox');
+// });
 
-app.use('/api/seed', seedRouter);
 
 mongoose
   .connect("mongodb+srv://jinan:hyjH8qJ9Jo2fpntc@cluster0.ox2k8.mongodb.net/auction?retryWrites=true&w=majority&appName=Cluster0")
@@ -43,9 +38,8 @@ mongoose
 
 app.use('/api/upload', uploadRouter);
 // returns list of products for this api
-app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
-app.use('/api/orders', orderRouter);
+
 app.use('/api/auctions', auctionRouter);
 
 app.use((err, req, res, next) => {
